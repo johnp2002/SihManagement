@@ -36,16 +36,33 @@
     <form id="form" method="post" action="/statuspost">
       <label for="curr">status</label>
       <input type="text" name="curr">
+      <input type="text" name="currID">
       <br>
       <label for="next">next</label>
       <input type="text" name="next">
+      <input type="text" name="nextID">
       <br>
+      <label for="teams">SELCT TEAMS</label>
+      <select name="nextTeam" id="teams">
+      </select>
       <button type="submit">Submit</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
+      const socket = io("/volunteer");
+      // fetch("/updated.json")
+      // .then(res => res.json())
+      // .then(data => {console.log(data); makeListSelect(data)})
 
+      function makeListSelect(list){
+        document.getElementById('teams').innerHTML='';
+        list.forEach(element => {
+          
+          document.getElementById('teams').innerHTML+=`
+          <option value="${element.ID}">${element.ID}</option>
+          `;
+        });
+      }
       const form = document.getElementById('form');
       const form2 = document.getElementById('form2');
       const input = document.getElementById('input');
@@ -66,10 +83,14 @@
           document.getElementById('queue').innerHTML+=`<li>${msg[i]}</li>`;
         }
       }
+
+
       socket.on('queue',(msg)=>{
         // queueUpdate(msg)
         console.log(msg)
       });
+      socket.on('stuData',(d)=>console.log(d))
+
       socket.on('chat message', (msg) => {
           const item = document.createElement('li');
           item.textContent = msg;

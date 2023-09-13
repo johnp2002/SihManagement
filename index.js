@@ -1,11 +1,27 @@
 const express = require('express');
 const { createServer } = require('node:http');
 const { join } = require('node:path');
-const { Server } = require('socket.io');
+const { Server, Socket } = require('socket.io');
 
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
+// firebase configs
+const { collection, getDocs } = require("firebase/firestore");
+
+const db = require('./config/firebase');
+
+const data = []
+async function getJson(){
+    const citiesRef = collection(db, 'teams');
+    const snapshot = await getDocs(citiesRef);
+    snapshot.forEach(doc => {
+    // console.log(doc.id, '=>', doc.data());
+    data.push(doc.data())
+    });
+
+}
+getJson()
 
 // constants values
 let queue = {
@@ -52,7 +68,7 @@ app.post('/querypost',(req,res)=>{
   // queue = req.body
   console.log(queue.queue)
 
-  // res.redirect('back')
+  res.redirect('back')
   io.emit('queue',queue)
 });
 
@@ -61,9 +77,13 @@ app.post('/statuspost',(req,res)=>{
     res.send('<h1>Un-Authorised Access</h1>')
   } 
   console.log('status post blackkkk')
-  console.log(req.body.curr)
-  queue.status.curr=req.body.curr;
-  queue.status.next=req.body.next;
+  console.log(req.body)
+  // queue.status.curr=[]
+  // queue.status.next=[]
+  // queue.status.curr.push( req.body.curr);
+  // queue.status.curr.push( req.body.currID);
+  // queue.status.next.push(req.body.next)
+  // queue.status.next.push(req.body.nextID)
   // for(let i in req.body){
   //   // console.log(i)
   //   let tmp = {'queue': req.body[i] }
@@ -74,8 +94,8 @@ app.post('/statuspost',(req,res)=>{
   // }
   // queue = req.body
 
-  res.redirect('back')
-  io.emit('queue',queue)
+  // res.redirect('back')
+  // io.emit('queue',queue)
 });
 
 app.get('/volunteer',(req,res)=>{
@@ -98,9 +118,13 @@ app.get('/volunteer',(req,res)=>{
     res.sendFile(join(__dirname, 'pages/auth.html'))
   } 
   
+  
 })
 
+
+
 io.on('connection', (socket) => {
+  
   // console.log(socket.id)
   console.log(queue)
   io.emit('queue',queue)
@@ -117,6 +141,15 @@ io.on('connection', (socket) => {
 
 
 });
+
+// volunteers socket 
+
+io.of("/volunteer").on("connection", (socket) => {
+  console.log(socket.connected)
+  console.log('volunteers connected')
+  io.of("/volunteer").emit('stuData',data)
+});
+
 
 server.listen(3000, () => {
   console.log('server running at http://localhost:3000');
