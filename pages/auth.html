@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;        
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+        }
+        form{
+            width: 400px;
+            padding: 20px 30px;
+            background-color: #c1121f;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+        label{
+            color: white; 
+            font-weight: 400;
+        }
+        input{
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            margin-left: 5px;
+        }
+        @media (max-width:400px) {
+            body{
+                background-color: rgb(190, 190, 190);
+            }
+            label{
+                color: black;
+            }
+            form{
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                align-content: center;
+                flex-direction: column;
+                flex-wrap: wrap;
+                align-items: center;
+                width: auto;
+            }
+            input{
+                margin-top: 20px;
+            }
+            [type~="password"]{
+                padding: 20px 0px;
+                color: white;
+                background-color: rgb(38, 38, 38);
+                font-size: 20px;
+                text-align: center;
+            }
+            [type~="submit"]{
+                margin-top: 20px;
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <label for="secretcode">Auth Pin :</label>
+        <input type="password" placeholder="Enter Auth Pin" name="pin" id="pin">
+        <input type="submit" id="sbt" />
+    </form>
+
+    
+    <script>
+        let btn = document.getElementById('sbt');
+        let pin = document.getElementById('pin');
+        btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            console.log(pin.value)
+            document.cookie = `auth=${pin.value}`;
+            location.reload();
+
+        })
+    </script>
+</body>
+</html>
