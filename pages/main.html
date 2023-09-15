@@ -90,6 +90,21 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
+      .queue{
+        width: 100%;
+        height: 250px;
+        background-color: #240046;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .queTeam{
+        display: inline-block;
+        width: 150px;
+        height: 100px;
+        background-color: #efefef;
+        margin-left: 30px;
+      }
     </style>
   </head>
   <body>
@@ -119,6 +134,17 @@
         <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
         <h2 class="nextTeamName">RED RANGERS blackyyyypoernakljsfjk</h2>
       </div>
+      <div class="nextCard" style="height: 372px;">
+        <h2 class="statusHead">Ip Camera</h2>
+
+      </div>
+    </section>
+    <section class="queue">
+      <span class="queTeam"></span>
+      <span class="queTeam"></span>
+      <span class="queTeam"></span>
+      <span class="queTeam"></span>
+      <span class="queTeam"></span>
     </section>
     <ul id="queue"></ul>
     <ul id="messages"></ul>

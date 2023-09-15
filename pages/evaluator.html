@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Teko&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&family=Poppins:wght@100;200;500;700&family=Roboto+Mono:wght@100;400&display=swap'); */
+        @import url('https://fonts.googleapis.com/css2?family=Borel&family=Montserrat:wght@200;300;500&family=Poppins:wght@100;200;500;700&family=Roboto+Mono:wght@100;400&display=swap');
+        *{
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        /* font-family: 'Montserrat', sans-serif; */
+        /* font-family: 'Roboto Mono', monospace; */
+
+    }
+    body 
+      { 
+        margin: 0;
+        padding: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+    header{
+        /* font-family: 'Poppins', sans-serif !important; */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        justify-content: space-around;
+        padding: 6px 0px;
+        text-align: center;
+        box-shadow: rgba(0, 0, 2, 0.4) 0px 2px 4px, rgba(50, 21, 240, 0.3) 0px 7px 13px -3px, rgba(25, 15, 213, 0.384) 0px -3px 0px inset;
+    }
+
+    .Twrapper{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: #541690;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        padding: 5px 0px;
+    }
+
+    .tID, .tNAME{
+        color: white;
+        min-width: 300px;
+        border-radius: 20px;
+        padding: 10px 50px;
+        /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+        /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+        /* background-color: rgb(248, 248, 248); */
+        /* background-color: #541690; */
+    }
+    .contentWrapper{
+        width: 100%;
+        padding: 0px 200px;
+        height: 100%;
+        max-width: 1600px;
+    }
+    footer{
+        width: 100%;
+        /* border: 2px solid rgba(0, 0, 0, 0.354); */
+        border-radius: 20px;
+        padding: 20px 10px;
+        margin-bottom: 20px;
+        /* background-color: rgba(128, 128, 128, 0.224); */
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        padding-left: 35px;
+    }
+    .report{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .marksContainer{
+        flex-wrap: wrap;
+        display: flex;
+        /* justify-content: space-evenly; */
+    }
+    .report > h2{
+        /* margin-top: 0; */
+    }
+    .markContainer{
+        margin-right: 15px;
+        /* background-color: dodgerblue; */
+        padding: 0px 15px;
+        border-radius: 10px;
+    }
+    .marks{
+        font-family: 'Teko', sans-serif;
+        font-size: 1.8rem;
+        margin: 0;
+        /* margin: 5px; */
+    }
+    </style>
+    <title>Evaluator</title>
+</head>
+<body>
+    <header>
+        <img src="../public/logoC.png" width="70px" alt="">
+        <div>
+          <h1 style="opacity: 0.5; ">Prasad V. Potluri Siddhartha Institute of Technology :: Autonomus</h1>
+          <p>Department of Computer Science and Engineering</p>
+        </div>
+        <img src="../public/sih.png" width="120px" alt="">
+    </header>
+    <h1 style="opacity: 0.5;">Ideathon Evaluator Page</h1>
+    <br>
+    <div class="contentWrapper">
+        <section class="Twrapper">
+            <div class="tID">
+                <h3 style="opacity: 0.5;">Team ID</h3>
+                <h2>R1_PVP_CSE_HW_46</h2>
+            </div>
+            <div class="tNAME">
+                <h3 style="opacity: 0.5;">Team Name</h3>
+                <h2>Life Protectors</h2>
+            </div>
+            <div class="tNAME">
+                <h3 style="opacity: 0.5;">Novelity</h3>
+                <input type="number">
+                <button>Submit</button>
+            </div>
+        </section>
+        <br>
+        <section >
+            <h2 style="opacity: 0.5;">Problem Statement</h2>
+            <div class="pstat" style="font-size: 1.2rem;">A software that suggests drugs and formulations for a disease/pharmacological property based on the Ayurvedic classical books/Repositories.</div>
+            
+            <h2 style="opacity: 0.5;">Ministry</h2>
+            <div class="minst" style="font-size: 1.2rem;">Ministry of Housing and Urban Affairs</div>
+        </section>
+        <br>
+        <br>
+        <footer>
+            <h3>Final Report</h3>
+            <div class="report">
+                <div>
+                    <p style="margin-bottom: 0;">Team Name :</p>
+                    <h2>Life Protectors</h2>
+                </div>
+                <div class="marksContainer">
+                    <div class="markContainer">
+                        <p>Novality</p>
+                        <p class="marks">6</p>
+                    </div>
+                    <div class="markContainer">
+                        <p>Apporiateness</p>
+                        <p class="marks">2</p>
+                    </div>
+                    <div class="markContainer">
+                        <p>Technical Feasibility</p>
+                        <p class="marks">4</p>
+                    </div>
+                    <div class="markContainer">
+                        <p>Impact</p>
+                        <p class="marks">7</p>
+                    </div>
+                    <div class="markContainer">
+                        <p>Status</p>
+                        <p class="marks">Pending</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <br>
+
+    </div>
+</body>
+</html>

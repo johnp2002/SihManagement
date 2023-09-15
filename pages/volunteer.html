@@ -4,7 +4,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Socket.IO chat</title>
     <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      *{
+        box-sizing: border-box;
+      }
+      body 
+      { 
+        margin: 0;
+        padding: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      header{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        justify-content: space-around;
+        padding: 6px 0px;
+        text-align: center;
+        box-shadow: rgba(0, 0, 2, 0.4) 0px 2px 4px, rgba(50, 21, 240, 0.3) 0px 7px 13px -3px, rgba(25, 15, 213, 0.384) 0px -3px 0px inset;
+      }
 
       /* #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); } */
       #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
@@ -14,68 +36,91 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
+      .setQueue{
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(rgba(128, 128, 128, 0.454),rgba(0, 0, 0, 0.541));
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+      }
+      .stuWrapper{
+        width: 100%;
+        /* background-color: yellow; */
+        height:100%;
+        overflow-y: scroll;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 10px 25px;
+        flex-wrap: wrap;
+      }
+      .list{
+        display: flex;
+        background-color: #efefef;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;
+        /* align-items: center; */
+        margin: 10px;
+        padding: 0px 25px;
+        
+      }
+      .teamID{
+        margin-bottom: 1px;
+      }
+      button{
+        margin-bottom: 15px;
+      }
     </style>
   </head>
   <body>
+    <header>
+      <img src="/logoC.png" width="70px" alt="">
+      <div>
+        <h1>Prasad V. Potluri Siddhartha Institute of Technology :: Autonomus</h1>
+        <p>Department of Computer Science and Engineering</p>
+      </div>
+      <img src="/sih.png" width="130px" alt="">
+    </header>
+    <section class="setQueue">
+      
+    </section>
+    <section class="stuWrapper" id="stuContainer">
+      <!-- <div class="list" id="stuContainer">
+        <h3 class="teamID">R1_PVP_CSE_HW_46</h3>
+        <h3 class="teamNAME">Bharat Basha Translator</h3>
+      </div> -->
+    </section>
     <ul id="queue"></ul>
     <ul id="messages"></ul>
-    <!-- <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form> -->
-    <form id="form" method="post" action="/querypost">
-      <label for="name">1.</label>
-      <input type="text" name="1" id="">
-      <input type="text" name="2" id="">
-      <input type="text" name="3" id="">
-      <input type="text" name="4" id="">
-      <input type="text" name="5" id="">
-      <button type="submit">Submit</button>
-    </form>
-    <br>
-    <br>
-    <form id="form" method="post" action="/statuspost">
-      <label for="curr">status</label>
-      <input type="text" name="curr">
-      <input type="text" name="currID">
-      <br>
-      <label for="next">next</label>
-      <input type="text" name="next">
-      <input type="text" name="nextID">
-      <br>
-      <label for="teams">SELCT TEAMS</label>
-      <select name="nextTeam" id="teams">
-      </select>
-      <button type="submit">Submit</button>
-    </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io("/volunteer");
       // fetch("/updated.json")
       // .then(res => res.json())
       // .then(data => {console.log(data); makeListSelect(data)})
+      
+      // socket.on('queue',(msg)=>console.log(msg))
+      var stuData = []
 
-      function makeListSelect(list){
-        document.getElementById('teams').innerHTML='';
-        list.forEach(element => {
-          
-          document.getElementById('teams').innerHTML+=`
-          <option value="${element.ID}">${element.ID}</option>
+      function SetStuLists(){
+        document.getElementById('stuContainer').innerHTML=''
+        stuData.forEach(element => {
+          document.getElementById('stuContainer').innerHTML+=`
+          <div class="list">
+            <h3 class="teamID">${element.team_id}</h3>
+            <h3 class="teamNAME">${element.team_name}</h3>
+            <button team = '${element.team_id}'>team</button>
+          </div>
+
           `;
         });
       }
-      const form = document.getElementById('form');
-      const form2 = document.getElementById('form2');
-      const input = document.getElementById('input');
-      const messages = document.getElementById('messages');
+      var btns = document.getElementsByTagName('button')
+      
+      
 
-      form.addEventListener('submit', (e) => {
-        // e.preventDefault();
-        // if (input.value) {
-        //   socket.emit('chat message', input.value);
-        //   input.value = '';
-        // }
-      });
-      // socket.on('queue',(msg)=>console.log(msg))
       function queueUpdate(msg){
         document.getElementById('queue').innerHTML='';
         for(let i in msg){
@@ -84,19 +129,16 @@
         }
       }
 
-
       socket.on('queue',(msg)=>{
         // queueUpdate(msg)
         console.log(msg)
       });
-      socket.on('stuData',(d)=>console.log(d))
 
-      socket.on('chat message', (msg) => {
-          const item = document.createElement('li');
-          item.textContent = msg;
-          messages.appendChild(item);
-          window.scrollTo(0, document.body.scrollHeight);
-      });
+      socket.on('stuData',(d)=>{
+        console.log(d); 
+        stuData=d;
+        SetStuLists()
+      })
 
       var source = "/beep.wav"
       var audio = document.createElement("audio");
@@ -107,6 +149,16 @@
         audio.play();
       }, true);
       audio.src = source;
+
+      function setListeners(){
+
+        for (let index = 0; index < btns.length; index++) {
+          let m = btns[index].getAttribute('team')
+          btns[index].addEventListener('click',()=>console.log(btns[index].getAttribute('team')))
+        }
+      }
+      setListeners()
+      setTimeout(()=>setListeners(),1500)
     </script>
   </body>
 </html>
