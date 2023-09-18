@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Permissions-Policy" content="autoplay=(self)">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Socket.IO chat</title>
+    <style>
+      body 
+      { 
+        margin: 0;
+        padding: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      header{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        justify-content: space-around;
+        padding: 6px 0px;
+        text-align: center;
+        box-shadow: rgba(0, 0, 2, 0.4) 0px 2px 4px, rgba(50, 21, 240, 0.3) 0px 7px 13px -3px, rgba(25, 15, 213, 0.384) 0px -3px 0px inset;
+      }
+      #status{
+        width: 100%;
+        /* height: 300px; */
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px 0px;
+        margin-top: 20px;
+        font-family: sans-serif;
+      }
+      .currCard, .nextCard{
+        width: 400px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+      }
+      .currCard{
+        background-color: #240046;
+        color: #efefef;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(245, 245, 245, 0.461) 0px -3px 0px inset;
+      }
+      .currTeamName{
+        color: black;
+        background-color: #efefef;
+        padding: 5px 18px;
+        border-radius: 25px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 300px;
+        text-overflow: ellipsis;
+      }
+      .nextTeamName{
+        color: #efefef;
+        background-color: black;
+        padding: 5px 20px;
+        border-radius: 25px;
+        max-width: 300px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(245, 245, 245, 0.233) 0px -3px 0px inset;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .currTeamId , .NextTeamId{
+        font-size: 1.5rem;
+        font-family: monospace;
+      }
+      .nextCard{
+        background-color: #ff9100;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+      }
+      .statusHead{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        opacity: 0.8;
+        font-size: 3rem;
+      }
+      /* #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); } */
+      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+      #input:focus { outline: none; }
+      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages > li { padding: 0.5rem 1rem; }
+      #messages > li:nth-child(odd) { background: #efefef; }
+      .queue{
+        width: 100%;
+        height: 250px;
+        background-color: #240046;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .queTeam{
+        display: inline-block;
+        height: 100px;
+        background-color: #efefef;
+        color: #240046;
+        margin-left: 30px;
+        padding: 0px 10px;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+      }
+      .teamNAME{
+        font-weight: 400;
+        font-size: 1.7rem;
+        margin-top: 0;
+      }
+      #camImg{
+        width: 100%;
+        height: 100%;
+        background-color: #24004688;
+      }
+      #sListRep{
+        width: 100%;
+        /* background-color: #333; */
+        height: 300px;
+      }
+      .marksContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .Report{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 900px;
+        margin: auto;
+        background-color: #03045e;
+        color: white;
+        padding: 0px 55px;
+        border-radius: 10px;
+      }
+      .mark{
+        margin: 0px 5px 0px 15px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <audio id="myAudio" autoplay controls src="/beep.wav" type="audio/wav" style="display: none;"></audio>
+
+    <header>
+      <img src="/logoC.png" width="70px" alt="">
+      <div>
+        <h1>Prasad V. Potluri Siddhartha Institute of Technology :: Autonomus</h1>
+        <p>Department of Computer Science and Engineering</p>
+      </div>
+      <img src="/sih.png" width="120px" alt="">
+    </header>
+    <section class="eventtitle">
+      <h2 class="eveTitle">Dept of CSE - Ideathon Status - Admin Report Page</h2>
+    </section>
+    <section id="sListRep">
+        <div class="Report">
+            <h3>Team Name</h3>
+            <h3>Team ID</h3>
+            <div class="marksContainer">
+                <p class="mark">Novelity : 5</p>
+                <p class="mark">Apporiateness : 5</p>
+                <p class="mark">Impact : 5</p>
+                <p class="mark">Technical : 5</p>
+            </div>
+            <p>Result</p>
+        </div>
+    </section>
+    <!-- <audio controls id="sound">
+      <source src="/beep.wav" type="audio/wav">
+    Your browser does not support the audio element.
+    </audio> -->
+    <ul id="queue"></ul>
+    <ul id="messages"></ul>
+    <!-- <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+         const socket = io();
+         socket.on('clists',(m)=>{
+            console.log(m)
+            setReport(m)
+         })
+
+         function setReport(m){
+            m.forEach(element => {
+                document.getElementById('sListRep').innerHTML=`
+                <div class="Report">
+                    <h3>${element.team_name}</h3>
+                    <h3 style="font-weight:100;">${element.team_id}</h3>
+                    <div class="marksContainer">
+                        <p class="mark">Novelity : ${element.novelity}</p>
+                        <p class="mark">Apporiateness : ${element.Apporiateness}</p>
+                        <p class="mark">Impact : ${element.Impact}</p>
+                        <p class="mark">Technical : ${element.Technical}</p>
+                    </div>
+                    <p>
+                        ${((element.novelity + element.Apporiateness + element.Impact + element.Technical)> 10)? 'Accepted':''}
+                        ${((element.novelity + element.Apporiateness + element.Impact + element.Technical)>= 5 )? 'Selected':''}
+                        ${((element.novelity + element.Apporiateness + element.Impact + element.Technical)< 5)? 'Skipped':''}
+                        
+                    </p>
+                </div>
+                `
+            });
+         }
+
+
+    </script>
+  </body>
+</html>

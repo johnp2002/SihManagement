@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Photo Capture</title>
+</head>
+<body>
+    <h1>Webcam Photo Capture</h1>
+    
+    <!-- Video stream from the webcam -->
+    <video id="video" autoplay></video>
+    
+    <!-- Button to capture a photo -->
+    <button id="captureButton">Capture Photo</button>
+    
+    <!-- Canvas to display the captured photo -->
+    <canvas id="canvas"></canvas>
+    
+    <!-- Image to display the captured photo -->
+    <img id="capturedImage" style="display: none;" />
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Script to access the webcam and capture photos -->
+    <script>
+        const socket = io();
+        const video = document.getElementById('video');
+        const captureButton = document.getElementById('captureButton');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const capturedImage = document.getElementById('capturedImage');
+
+        // Access the user's webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error('Error accessing the webcam:', error);
+            });
+            let time = 0;
+            let framesarray=[]
+            setInterval(() => {
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                
+                // Convert the canvas content to a JPEG image
+                const imageData = canvas.toDataURL('image/jpeg');
+                framesarray.push(imageData)
+                time++;
+                if(time === 90){
+
+                    socket.emit('camData',framesarray)
+                    time = 0;
+                    framesarray = []
+                }
+
+            }, 1000/40);
+        // Capture a photo from the webcam stream
+        captureButton.addEventListener('click', () => {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Convert the canvas content to a JPEG image
+            const imageData = canvas.toDataURL('image/jpeg');
+            console.log('the cam data')
+            console.log(imageData)
+            socket.emit('camData',imageData)
+            // Display the captured image
+            capturedImage.src = imageData;
+            capturedImage.style.display = 'block';
+
+            // You can now send the captured image to a server or perform other actions.
+        });
+        // socket.on('queue',(msg)=>{
+        //     console.log(msg)
+        // })
+    </script>
+</body>
+</html>

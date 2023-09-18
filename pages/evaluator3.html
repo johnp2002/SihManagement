@@ -124,7 +124,7 @@
                 <h2 id="teamNamee">Life Protectors</h2>
             </div>
             <div class="tNAME">
-                <h3 style="opacity: 0.5;">Novelity</h3>
+                <h3 style="opacity: 0.5;">Technical Feasibility</h3>
                 <input type="number" id="mValue" value="0">
                 <button id="sBtn">Submit</button>
             </div>
@@ -202,7 +202,7 @@
             if(currObj.length === 1){
                 let val = document.getElementById('mValue').value
                 console.log(parseInt(val))
-                socket.emit('novelity',val)
+                socket.emit('Technical',val)
             }else{
                 console.log('current team empty')
             }

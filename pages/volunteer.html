@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <title>Socket.IO chat</title>
     <style>
       *{
@@ -38,10 +39,13 @@
       #messages > li:nth-child(odd) { background: #efefef; }
       .setQueue{
         width: 100%;
-        height: 300px;
-        background: linear-gradient(rgba(128, 128, 128, 0.454),rgba(0, 0, 0, 0.541));
+        box-shadow: rgba(0, 0, 2, 0.4) 0px 2px 4px, rgba(50, 21, 240, 0.3) 0px 7px 13px -3px, rgba(25, 15, 213, 0.384) 0px -3px 0px inset;
+        /* height: 200px; */
+        /* background: linear-gradient(rgba(128, 128, 128, 0.454),rgba(0, 0, 0, 0.541)); */
         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
         box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+        margin-bottom: 25px;
+        display: flex;
       }
       .stuWrapper{
         width: 100%;
@@ -72,6 +76,127 @@
       button{
         margin-bottom: 15px;
       }
+      .curr{
+        height: 100%;
+        /* width: 250px; */
+        background-color: #003049;
+        border-radius: 20px;
+        padding: 10px 40px;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+      }
+      .queueList{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 15px;
+        height: 80%;
+        /* overflow: scroll; */
+        flex-direction: row;
+        flex-wrap: inherit;
+
+      }
+      .QueueItem{
+        /* background-color: seagreen; */
+        background: linear-gradient(45deg, #ad5389 35%, #3c1053 100%);
+        text-align: center;
+        color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0px 15px;
+        margin-left: 15px;
+        cursor: pointer;
+        height: 150px;
+        border-radius: 20px;
+        padding: 5px 10px;
+        transition: all 1.5s ease-in-out 0s;
+      }
+      .QueueWrapper{
+        height: 100%;
+        padding: 10px;
+        margin: auto;
+        overflow: scroll;
+      }
+      .cam{
+        width: 600px;
+        height: 100%;
+        background-color: #333;
+        border-radius: 20px;
+        margin-left: 20px;
+      }
+      iframe{
+        width: 100%;
+        overflow: visible;
+        height: 100%;
+        transform: scale(0.8);
+      }
+      /* .QueueItem::before{
+        content: 'Click to Remove from queue';
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 10px;
+        height: 100%;
+        width: 100%;
+        background-color: aqua;
+        opacity: 0;
+      }
+      .QueueItem:hover .QueueItem::before{
+        opacity: 1;
+      } */
+      .title{
+        font-size: 3rem;
+        /* position: absolute; */
+        z-index: -1;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      .teamNAME{
+        font-weight: 300;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.5rem;
+        margin-top: 0;
+        width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* color: blue; */
+      }
+      .btn{
+        background-color: #787878;
+        border: none;
+        border-radius: 20px;
+        color: white;
+        padding: 5px 0px;
+        cursor: pointer;
+      }
+      .btn:hover{
+        background-color: black;
+      }
+      .widthRem{
+        width: 0% !important;
+        overflow: hidden;
+      }
+      .currCam{
+        height: 250px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #teamComplete,#makeCurr{
+        border: none;
+        padding: 5px 10px;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      #teamComplete:hover,#makeCurr:hover{
+        background-color: #333;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -84,8 +209,75 @@
       <img src="/sih.png" width="130px" alt="">
     </header>
     <section class="setQueue">
-      
+      <!-- <div class="curr">
+        <div class="data">
+          <h2>Current Team</h2>
+          <h3 class="teamID">R1_PVP_CSE_HW_40</h3>
+          <h3 class="teamNAME">GUIDO</h3>
+        </div>
+        <input type="button" value="Make Team Complete" id="teamComplete">
+      </div> -->
+      <div class="QueueWrapper">
+        <div>
+          <h3 class="title" style="font-weight: 100; text-align: center;">Teams Queue List</h3>
+          <br>
+        </div>
+        <div class="queueList">
+          <div class="QueueItem" style="width: 100%;">
+            <h4 style="margin-bottom: 0;">Queue No:0</h4>
+            <h3 class="teamID">QUEUE NOT YET SET</h3>
+            <h3 class="teamNAME"></h3>
+          </div>
+          <!-- <div class="QueueItem">
+            <p style="right: 0; top: 0; position: absolute;">X</p>
+            <h3 class="teamID">R1_PVP_CSE_HW_39</h3>
+            <h3 class="teamNAME">NAVGATIH</h3>
+          </div>
+          <div class="QueueItem">
+            <h4 style="margin-bottom: 0;">Queue No:1</h4>
+            <h3 class="teamID">R1_PVP_CSE_HW_39</h3>
+            <h3 class="teamNAME">NAVGATIH</h3>
+          </div>
+          <div class="QueueItem">
+            <h3 class="teamID">R1_PVP_CSE_HW_39</h3>
+            <h3 class="teamNAME">NAVGATIH</h3>
+          </div>
+          <div class="QueueItem">
+            <h3 class="teamID">R1_PVP_CSE_HW_39</h3>
+            <h3 class="teamNAME">NAVGATIH</h3>
+          </div>
+          <div class="QueueItem">
+            <h3 class="teamID">R1_PVP_CSE_HW_39</h3>
+            <h3 class="teamNAME">NAVGATIH</h3>
+          </div> -->
+        </div>
+      </div>
+      <!-- <div class="cam">
+
+      </div> -->
     </section>
+
+    <section class="currCam">
+      <div class="curr">
+        <div class="data">
+          <h2 style="font-weight: 100; font-size: 1.8rem;">Current Team</h2>
+          <h3 class="teamID">Current team not Available</h3>
+          <h3 class="teamNAME">...</h3>
+        </div>
+        <div>
+
+          <input type="button" value="Make Team Complete" id="teamComplete">
+          <input type="button" value="make team current from Queue" id="makeCurr" style="background-color: #d90429 ; color: white;">
+        </div>
+      </div>
+      <div class="cam">
+        <iframe id="camFrame" sandbox="allow-same-origin allow-scripts" src="http://192.168.1.7:8081/video" frameborder="0"></iframe>
+      </div>
+    </section>
+    <br>
+    <br>
+    <h3 class="title" style="font-weight: 100;">Teams Lists</h3>
+
     <section class="stuWrapper" id="stuContainer">
       <!-- <div class="list" id="stuContainer">
         <h3 class="teamID">R1_PVP_CSE_HW_46</h3>
@@ -103,23 +295,26 @@
       
       // socket.on('queue',(msg)=>console.log(msg))
       var stuData = []
-
+      var Queue = {}
       function SetStuLists(){
         document.getElementById('stuContainer').innerHTML=''
         stuData.forEach(element => {
           document.getElementById('stuContainer').innerHTML+=`
           <div class="list">
-            <h3 class="teamID">${element.team_id}</h3>
+            <h3 class="teamID" style="opacity:0.5;">${element.team_id}</h3>
             <h3 class="teamNAME">${element.team_name}</h3>
-            <button team = '${element.team_id}'>team</button>
+            <button class='btn' team = '${element.team_id}'>push to Queue</button>
           </div>
 
           `;
         });
       }
       var btns = document.getElementsByTagName('button')
-      
-      
+      // var completeBtn = document.getElementById('teamComplete')
+      // completeBtn.addEventListener('click',(e)=>{
+      //   e.preventDefault()
+      //   console.log('Complete Button Clicked')
+      // })
 
       function queueUpdate(msg){
         document.getElementById('queue').innerHTML='';
@@ -132,6 +327,7 @@
       socket.on('queue',(msg)=>{
         // queueUpdate(msg)
         console.log(msg)
+        Queue = msg
       });
 
       socket.on('stuData',(d)=>{
@@ -140,25 +336,175 @@
         SetStuLists()
       })
 
-      var source = "/beep.wav"
-      var audio = document.createElement("audio");
-      audio.load()
-      audio
-      audio.addEventListener("load", function() {
-        audio.play();
-        audio.play();
-      }, true);
-      audio.src = source;
+     
+
+      function getObj(team){
+        console.log(`the getObj function ${team} iddddd`)
+        let obj = stuData.filter(ele => ele.team_id == team)
+        // stuData.forEach(element => {
+        //   if(element.team_id == team){
+        //     console.log('object found')
+        //     console.log(element)
+        //   }
+        // });
+        console.log(obj)
+        if(Queue.queue.length != 5){
+          let bool = true;
+          Queue.queue.forEach(element => {
+            if(element == obj[0]){
+              bool = false;
+              console.log('duplicate found')
+            }
+          });
+          if(bool){
+
+            Queue.queue.push(obj[0])
+          }
+          console.log('updated queue')
+          console.log(Queue)
+        }else{
+          console.log('queue fullll')
+        }
+        socket.emit('queue',Queue)
+        setQueueElements()
+      }
+
+
+      // make team complete
+      var completeBtn = document.getElementById('teamComplete');
+      completeBtn.addEventListener('click',()=>{
+        if(Queue.status.curr[0] === null){
+          return
+        }
+        if(Queue.status.curr.length === 0){
+          return
+        }
+        console.log('complete Team CLicked')
+        // stuData = stuData.filter(e => e != Queue.status.curr[0])
+        var foundIndex = stuData.findIndex(x => x.team_id == Queue.status.curr[0].team_id);
+        stuData.splice(foundIndex,1)
+        setTimeout(() => {
+          SetStuLists()
+          
+          socket.emit('updateStudent',stuData);
+          Queue.status.curr.pop()
+          setQueueElements()
+          socket.emit('queue',Queue)
+        }, 1000);
+        socket.emit('completeTeam',Queue.status.curr[0])
+      })
+
+
+
+      // make curr from queue top object
+      var makeCurr = document.getElementById('makeCurr');
+      makeCurr.addEventListener('click',(e)=>{
+        if(Queue.status.curr[0] === null){
+          return
+        }
+        if(Queue.status.curr.length != 0){
+          return
+        }
+        if(Queue.queue.length == 0){
+          return
+        }
+        console.log('Make curr button clicked')
+        let jTemp = Queue.queue[0];
+        Queue.queue.splice(0,1);
+
+        Queue.status.curr.push(jTemp);
+        socket.emit('queue',Queue)
+        setQueueElements()
+        setListeners()
+        setQueueElements()
+        location.reload();
+      })
+
+
+      function remQueueElement(){
+        let queues = document.getElementsByClassName('QueueItem')
+        for (let index = 0; index < queues.length; index++) {
+          queues[index].addEventListener('click',()=>{
+            console.log('item clicked from queue')
+            console.log( queues[index].lastChild.previousElementSibling.innerHTML)
+            // console.log(Queue.queue.filter(e=>e.team_name == queues[index].lastChild.previousElementSibling.innerHTML)[0])
+            let tmpObj = Queue.queue.filter(e=>e.team_name == queues[index].lastChild.previousElementSibling.innerHTML)[0]
+            // console.log( Queue.queue.filter(e=> e != tmpObj))
+            Queue.queue = Queue.queue.filter(e=> e != tmpObj)
+            if(Queue.queue.length === 0){
+              console.log('queue emptyyyy')
+              document.getElementsByClassName('queueList')[0].innerHTML=`
+              <div class="QueueItem" style="width: 100%;">
+                <h4 style="margin-bottom: 0;">Queue No:0</h4>
+                <h3 class="teamID">QUEUE NOT YET SET</h3>
+                <h3 class="teamNAME"></h3>
+              </div>
+              `
+            }
+            socket.emit('queue',Queue)
+            setTimeout(()=>{
+
+              setQueueElements()
+              remQueueElement()
+            },300)
+          })
+          
+        }
+        
+      }
+
+      function setQueueElements(){
+        let currContainer = document.getElementsByClassName('data')[0];
+        if(Queue.status.curr.length === 0){
+          currContainer.innerHTML=`
+          <h2 style="font-weight: 100; font-size: 1.8rem;">Current Team</h2>
+          <h3 class="teamID"> Current Not yet Set</h3>
+          <h3 class="teamNAME"></h3>
+          
+          `;
+        }
+        if(Queue.status.curr.length === 1){
+          currContainer.innerHTML=`
+          <h2 style="font-weight: 100; font-size: 1.8rem;">Current Team</h2>
+          <h3 class="teamID">${Queue.status.curr[0].team_id}</h3>
+          <h3 class="teamNAME">${Queue.status.curr[0].team_name}</h3>
+          
+          `;
+        }
+        
+
+        let container = document.getElementsByClassName('queueList')[0];
+        if(Queue.queue.length == 0){
+          return
+        }
+        container.innerHTML='';
+        Queue.queue.forEach((element,idx) => {
+          console.log(element)
+          container.innerHTML+=`
+          <div class="QueueItem">
+            <h4 style="margin-bottom: 0;">Queue No:${idx+1}</h4>
+            <h3 class="teamID">${element.team_id}</h3>
+            <h3 class="teamNAME"  style="font-weight: 100; font-size: 1.7rem; margin-top: 0; color: white">${element.team_name}</h3>
+          </div>
+          
+          `
+        });
+        remQueueElement()
+      }
+
 
       function setListeners(){
 
         for (let index = 0; index < btns.length; index++) {
           let m = btns[index].getAttribute('team')
-          btns[index].addEventListener('click',()=>console.log(btns[index].getAttribute('team')))
+          btns[index].addEventListener('click',()=>{
+            console.log(btns[index].getAttribute('team'));
+            getObj(btns[index].getAttribute('team'))
+          })
         }
       }
       setListeners()
-      setTimeout(()=>setListeners(),1500)
+      setTimeout(()=>{setListeners();  setQueueElements(); remQueueElement();},1500)
     </script>
   </body>
 </html>

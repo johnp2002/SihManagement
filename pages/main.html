@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Permissions-Policy" content="autoplay=(self)">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="/media.css">
     <style>
       body 
       { 
@@ -100,52 +102,74 @@
       }
       .queTeam{
         display: inline-block;
-        width: 150px;
         height: 100px;
         background-color: #efefef;
+        color: #240046;
         margin-left: 30px;
+        padding: 0px 10px;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+      }
+      .teamNAME{
+        font-weight: 400;
+        font-size: 1.7rem;
+        margin-top: 0;
+      }
+      #camImg{
+        width: 100%;
+        height: 100%;
+        background-color: #24004688;
       }
     </style>
   </head>
   <body>
+
+    <audio id="myAudio" autoplay controls src="/beep.wav" type="audio/wav" style="display: none;"></audio>
+
     <header>
-      <img src="/logoC.png" width="70px" alt="">
+      <img src="/logoC.png" id="clgL" width="70px" alt="">
       <div>
         <h1>Prasad V. Potluri Siddhartha Institute of Technology :: Autonomus</h1>
         <p>Department of Computer Science and Engineering</p>
       </div>
-      <img src="/sih.png" width="120px" alt="">
+      <img src="/sih.png" id="sih" width="120px" alt="">
     </header>
     <section class="eventtitle">
-      <h2 class="eveTitle">Dept of CSE - Ideathon Status </h2>
+      <h2 class="eveTitle">Dept of CSE - Ideathon Status <button id="aBtn">click to turn Audio Notifcation</button></h2>
     </section>
     <section id="status">
       <div class="currCard">
         <h2 class="statusHead">Current Team</h2>
         <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
-        <p class="currTeamId">R1_PVP_CSE_HW_01</p>
+        <p class="currTeamId">Current Team not Available</p>
         <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
-        <h2 class="currTeamName">RED RANGERS black panthers into</h2>
+        <h2 class="currTeamName">...</h2>
       </div>
       <div class="nextCard">
         <h2 class="statusHead">Next Team</h2>
         <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
-        <p class="NextTeamId">R1_PVP_CSE_HW_30</p>
+        <p class="NextTeamId">Next Team not yet set</p>
         <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
-        <h2 class="nextTeamName">RED RANGERS blackyyyypoernakljsfjk</h2>
+        <h2 class="nextTeamName">...</h2>
       </div>
-      <div class="nextCard" style="height: 372px;">
-        <h2 class="statusHead">Ip Camera</h2>
-
+      <div class="nextCard" style="height: 372px; width: fit-content; background-color: black; overflow: hidden;">
+        <!-- <h2 class="statusHead">Ip Camera</h2> -->
+        <!-- <img src="" id="camImg" alt=""> -->
+        <iframe width="460" height="215" src="https://www.youtube.com/embed/OjlaUkllTss?si=ouC_gveK_O79hwIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </section>
+   
     <section class="queue">
-      <span class="queTeam"></span>
-      <span class="queTeam"></span>
-      <span class="queTeam"></span>
-      <span class="queTeam"></span>
-      <span class="queTeam"></span>
+      <h2 style="color: #efefef;" id="Qtit">Queue List : </h2>
+      <div class="queTeam">
+        <h3 class="teamID">R1_PVP_CSE_HW_04</h3>
+        <h3 class="teamNAME">Straw Hats</h3>
+      </div>
     </section>
+    <!-- <audio controls id="sound">
+      <source src="/beep.wav" type="audio/wav">
+    Your browser does not support the audio element.
+    </audio> -->
     <ul id="queue"></ul>
     <ul id="messages"></ul>
     <!-- <form id="form" action="">
@@ -153,15 +177,28 @@
     </form> -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var source = "/beep.wav"
-      var audio = document.createElement("audio");
-      audio.src = source;
-      audio.load()
-      audio.addEventListener("load", function() {
-        audio.play()
-      }, true);
-      const socket = io();
+      var x = document.getElementById('myAudio')
+      const audioElement = new Audio("beep.wav");
+      var bool = true
+      function myFunction() {
+        // var audio = new Audio('beep.wav');
+        // audio.play();
+        // Your code here
+        let audio = document.createElement('audio');
+        audio.src='./beep.wav';
+        audio.volume=0.2;
+        audio.autoplay=true;
+        audio.play;
+      }
+      document.getElementById("aBtn").addEventListener("click",()=>{
+        if(bool == true){
 
+          myFunction()
+          bool=false;
+        }
+      });
+      const socket = io();
+      document.getElementById("aBtn").click()
       const input = document.getElementById('input');
       const curr = document.getElementById('curr');
       const next = document.getElementById('next');
@@ -178,13 +215,121 @@
         //   console.log(msg[i])
         //   document.getElementById('queue').innerHTML+=`<li>${msg[i]}</li>`;
         // }
+        // pplay()
+      }
+
+      function setQueue(data){
+       
+        
+
+
+        //  audio1.play();
+        let container = document.getElementsByClassName('queue')[0];
+        container.innerHTML='<h2 style="color: #efefef;" id="Qtit">Queue List : </h2>'
+        data.queue.forEach(element => {
+          container.innerHTML+=`
+          <div class="queTeam">
+            <h3 class="teamID">${element.team_id}</h3>
+            <h3 class="teamNAME">${element.team_name}</h3>
+          </div>
+          `
+        });
+        myFunction()
+      }
+
+      function currTeam(m){
+        let con = document.getElementsByClassName('currCard')[0];
+        if(m.status.curr.length === 1 ){
+
+          con.innerHTML=`
+          <h2 class="statusHead">Current Team</h2>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
+          <p class="currTeamId">${m.status.curr[0].team_id}</p>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
+          <h2 class="currTeamName">${m.status.curr[0].team_name}</h2>
+          `
+        }else{
+          con.innerHTML=`
+          <h2 class="statusHead">Current Team</h2>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
+          <p class="currTeamId">Current Team not Available</p>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
+          <h2 class="currTeamName">...</h2>
+          `
+        }
+        
+      }
+      function nextTeam(m){
+        let nxt = document.getElementsByClassName('nextCard')[0];
+        nxt.innerHTML=`
+        <h2 class="statusHead">Next Team</h2>
+        <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
+        <p class="NextTeamId">${m.queue[0].team_id}</p>
+        <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
+        <h2 class="nextTeamName">${m.queue[0].team_name}</h2>
+        `
+        console.log('next team setting block')
+        console.log(m.queue.length)
+        if(m.queue.length === 0){
+          nxt.innerHTML=`
+          <h2 class="statusHead">Next Team</h2>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
+          <p class="NextTeamId">Next Team not yet set</p>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
+          <h2 class="nextTeamName">...</h2>
+          `
+        }
+        
+        
       }
       socket.on('queue',(msg)=>{
-        queueUpdate(msg)
+        console.log('queue listener of socket')
+        console.log(msg.queue.length === 0)
+        if(msg.queue.length === 0){
+          document.getElementsByClassName('nextCard')[0].innerHTML=`
+          <h2 class="statusHead">Next Team</h2>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team ID :</p>
+          <p class="NextTeamId">Next Team not yet set</p>
+          <p style="margin-bottom: 0px; font-size: 1.2rem; font-style: italic;">Team Name :</p>
+          <h2 class="nextTeamName">...</h2>
+          
+          `
+        }
+        // queueUpdate(msg)
+        // jplayAudio()
         console.log(msg)
-      });
+        setQueue(msg)
+        currTeam(msg)
+        nextTeam(msg)
+        // location.reload()
+        setTimeout(() => {
+          myFunction()
+          nextTeam(msg)
+        }, 500);
+        // startAudio()
 
-      
+
+
+      });
+      document.getElementById("aBtn").click()
+      // var video = []
+      // let idx = 0; 
+      // socket.on('camData',(data)=>{
+      //   console.log('cama data came')
+      //   // setInterval(() => {
+          
+      //   //   document.getElementById('camImg').src = data
+      //   // }, interval);
+      //   video = [...video,...data]
+      // })
+      // // function playVideo(data){
+
+      // // }
+      // setInterval(() => {
+      //   if(video.length > 0){
+      //     document.getElementById('camImg').src = video.pop()
+      //   }
+      // }, 1000/30);
     </script>
   </body>
 </html>
