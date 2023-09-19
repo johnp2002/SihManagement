@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Teko&display=swap');
@@ -148,24 +149,24 @@
                 </div>
                 <div class="marksContainer">
                     <div class="markContainer">
-                        <p>Novality</p>
-                        <p class="marks">6</p>
+                        <p >Novality</p>
+                        <p id="novelity" class="marks">0</p>
                     </div>
                     <div class="markContainer">
-                        <p>Apporiateness</p>
-                        <p class="marks">2</p>
+                        <p >Apporiateness</p>
+                        <p id="apporiateness" class="marks">0</p>
                     </div>
                     <div class="markContainer">
                         <p>Technical Feasibility</p>
-                        <p class="marks">4</p>
+                        <p  id="technical" class="marks">0</p>
                     </div>
                     <div class="markContainer">
-                        <p>Impact</p>
-                        <p class="marks">7</p>
+                        <p >Impact</p>
+                        <p id="impact" class="marks">0</p>
                     </div>
                     <div class="markContainer">
                         <p>Status</p>
-                        <p class="marks">Pending</p>
+                        <p class="marks" id="status">Pending</p>
                     </div>
                 </div>
             </div>
@@ -187,7 +188,17 @@
             console.log(msg)
         })
 
+        socket.on('Impact',(v)=>{
+            document.getElementById('impact').innerHTML = v;
+        })
 
+        socket.on('Apporiateness',(v)=>{
+            document.getElementById('apporiateness').innerHTML = v;
+        })
+
+        socket.on('Technical',(v)=>{
+            document.getElementById('technical').innerHTML = v;
+        })
 
         function setCurrteam(data){
             if(data.length !== 0){
@@ -203,10 +214,33 @@
                 let val = document.getElementById('mValue').value
                 console.log(parseInt(val))
                 socket.emit('novelity',val)
+                document.getElementById('novelity').innerHTML = val;
+                checkResult()
             }else{
                 console.log('current team empty')
             }
         })
+        function checkResult(){
+           let ans = document.getElementById('impact').innerHTML
+            ans += document.getElementById('apporiateness').innerHTML
+            ans += document.getElementById('technical').innerHTML
+            ans += document.getElementById('novelity').innerHTML
+            if(isNaN(ans) === false){
+                if(ans < 5){
+
+                    document.getElementById('status').innerHTML = 'Rejected'
+                }
+                else if(ans <= 10){
+                    document.getElementById('status').innerHTML = 'Selected'
+                    
+                }
+                else if(ans > 10){
+                    document.getElementById('status').innerHTML = 'Accepted'
+
+                }
+            }
+        }
+    
     </script>
 </body>
 </html>

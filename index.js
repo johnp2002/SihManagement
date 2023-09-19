@@ -224,6 +224,7 @@ io.of("/evaluator").on("connection",(socket)=>{
   io.of("/evaluator").emit('currTeam',queue.status.curr)
   
   socket.on('novelity',(val)=>{
+    socket.broadcast.emit('novelity',val)
     console.log('novelity value emitted '+ val+` for team ${queue.status.curr[0].team_id}`)
     queue.status.curr[0].novelity=val;
     io.emit('queue',queue)
@@ -233,6 +234,7 @@ io.of("/evaluator").on("connection",(socket)=>{
     });
   })
   socket.on('Apporiateness',(val)=>{
+    socket.broadcast.emit('Apporiateness',val)
     console.log('Apporiateness value emitted '+ val+` for team ${queue.status.curr[0].team_id}`)
     queue.status.curr[0].Apporiateness=val;
     io.emit('queue',queue)
@@ -242,6 +244,7 @@ io.of("/evaluator").on("connection",(socket)=>{
     });
   })
   socket.on('Technical',(val)=>{
+    socket.broadcast.emit('Technical',val)
     console.log('Technical value emitted '+ val+` for team ${queue.status.curr[0].team_id}`)
     queue.status.curr[0].Technical=val;
     io.emit('queue',queue)
@@ -251,6 +254,7 @@ io.of("/evaluator").on("connection",(socket)=>{
     });
   })
   socket.on('Impact',(val)=>{
+    socket.broadcast.emit('Impact',val)
     console.log('Impact value emitted '+ val+` for team ${queue.status.curr[0].team_id}`)
     queue.status.curr[0].Impact=val;
     io.emit('queue',queue)
