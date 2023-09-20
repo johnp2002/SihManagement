@@ -19,14 +19,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 
 const firestore = getFirestore(app);
-const jsonData = require('../jsons/updated.json')
+// const jsonData = require('../jsons/new.json')
 // console.log(jsonData)
 // jsonData.forEach(element => {
-    // setDoc(doc(firestore,"teams",jsonData[0].ps_id),jsonData[0])
+//     setDoc(doc(firestore,"teams2",jsonData[0].team_id),jsonData[0])
 // });
 // for (let index = 0; index < jsonData.length; index++) {
 //     const element = jsonData[index];
-//         setDoc(doc(firestore,"teams",element.ps_id),element)
+//         setDoc(doc(firestore,"teams2",element.team_id),element)
 // }
 // let idx=0
 // let x = setInterval(()=>{

@@ -14,7 +14,7 @@ const db = require('./config/firebase');
 
 var data = []
 async function getJson(){
-    const citiesRef = collection(db, 'teams');
+    const citiesRef = collection(db, 'teams2');
     const snapshot = await getDocs(citiesRef);
     snapshot.forEach(doc => {
     // console.log(doc.id, '=>', doc.data());

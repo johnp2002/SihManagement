@@ -1,0 +1,507 @@
+[
+    {
+        "prob_stat": "Chatbot to know individual prakriti(phenotype) ",
+        "team_name": "Medtech Smarties",
+        "team_id": "PVP_HK_01"
+    },
+    {
+        "prob_stat": "Police Complaint Management System Using NFT(Non Fungible Token)",
+        "team_name": "TEAM EMERGERS",
+        "team_id": "PVP_HK_02"
+    },
+    {
+        "prob_stat": "AI based IT training system",
+        "team_name": "AI Learning Catalysts",
+        "team_id": "PVP_HK_03"
+    },
+    {
+        "prob_stat": "Chatbot to respond to text queries pertaining to various Acts, Rules, and Regulations applicable to Mining industries",
+        "team_name": "Tech Titans",
+        "team_id": "PVP_HK_04"
+    },
+    {
+        "prob_stat": "Identification of medical plans\/raw materials using image processing and machine learning algorithms ",
+        "team_name": "Strangers",
+        "team_id": "PVP_HK_05"
+    },
+    {
+        "prob_stat": "Student Innovation ",
+        "team_name": "Straw Hats",
+        "team_id": "PVP_HK_06"
+    },
+    {
+        "prob_stat": "Online integrated platform for projects taken up by the students of various universities\/colleges",
+        "team_name": "TECH DICE",
+        "team_id": "PVP_HK_07"
+    },
+    {
+        "prob_stat": "Online Blockchain based certificate generation and validation system for government organization\n",
+        "team_name": "Blockcert Gaurdians",
+        "team_id": "PVP_HK_08"
+    },
+    {
+        "prob_stat": "Food Supply chain and Micro Investment using blockchain",
+        "team_name": "Tech Sentinals",
+        "team_id": "PVP_HK_09"
+    },
+    {
+        "prob_stat": "Air and water quality index and environment monitoring",
+        "team_name": "Star Tech",
+        "team_id": "PVP_HK_10"
+    },
+    {
+        "prob_stat": "Student Innovation ",
+        "team_name": "Electric chargers",
+        "team_id": "PVP_HK_11"
+    },
+    {
+        "prob_stat": "Student Innovation",
+        "team_name": "Route Revivers",
+        "team_id": "PVP_HK_12"
+    },
+    {
+        "prob_stat": "Ideate and implement a system to enhance the quality of education in rural areas",
+        "team_name": "Team Educators",
+        "team_id": "PVP_HK_13"
+    },
+    {
+        "prob_stat": "Online personalized learning remediation\/tutoring tool. Search for best teacher for specific topics.",
+        "team_name": "Bruteforce",
+        "team_id": "PVP_HK_14"
+    },
+    {
+        "prob_stat": "Smart and effective real time Parking ",
+        "team_name": "Team Prime",
+        "team_id": "PVP_HK_15"
+    },
+    {
+        "prob_stat": "Robust human target detection and acquisition",
+        "team_name": "Mavericks",
+        "team_id": "PVP_HK_16"
+    },
+    {
+        "prob_stat": "smart field automation: Designing a scarecrow equipped with an camera and bird or animal detection software to deter from entering into the fields. ",
+        "team_name": "AGRO",
+        "team_id": "PVP_HK_17"
+    },
+    {
+        "prob_stat": "Student Innovation ",
+        "team_name": "HexaHacks",
+        "team_id": "PVP_HK_18"
+    },
+    {
+        "prob_stat": "E-Waste Facility Locator",
+        "team_name": "Saviours",
+        "team_id": "PVP_HK_19"
+    },
+    {
+        "prob_stat": "A device to monitor and predict emotional and psychological states in mentally disabled individuals. Assists in better caregiving.",
+        "team_name": "NeuroCoders",
+        "team_id": "PVP_HK_20"
+    },
+    {
+        "prob_stat": "Revolutionizing authentication with a Graphical Password System to enhance security and user experience.",
+        "team_name": "The Guardians",
+        "team_id": "PVP_HK_21"
+    },
+    {
+        "prob_stat": "Using technology to develop a moving\/mobile education system\/software or equipment so that the children of nomadic communities such as Bakarwals \/Gujjars can have proper education at least till primary.",
+        "team_name": "WIZZ MENDERS",
+        "team_id": "PVP_HK_22"
+    },
+    {
+        "prob_stat": "Fake Social Media Profile detection and reporting",
+        "team_name": "The Algorithm Angels",
+        "team_id": "PVP_HK_23"
+    },
+    {
+        "prob_stat": "A face extension tool that tracks on-screen hours, facial expressions, and some more features for websites and applications.",
+        "team_name": "Project Facekey",
+        "team_id": "PVP_HK_24"
+    },
+    {
+        "prob_stat": "App based solution to identify and solve disease in plants\/crops",
+        "team_name": "Agri gains",
+        "team_id": "PVP_HK_25"
+    },
+    {
+        "prob_stat": "AI Assisted Tele-medicine KIOSK for Rural India",
+        "team_name": "TeleHealth Trailblazers",
+        "team_id": "PVP_HK_26"
+    },
+    {
+        "prob_stat": "App-Based Solution to identify and solve disease in Plants\/Crops ",
+        "team_name": "Plantino ",
+        "team_id": "PVP_HK_27"
+    },
+    {
+        "prob_stat": "AI Assisted Tele-medicine KIOSK for Rural India",
+        "team_name": "CodeStars",
+        "team_id": "PVP_HK_28"
+    },
+    {
+        "prob_stat": "Air and water quality index and environment monitoring",
+        "team_name": "ECHO DETECTORS",
+        "team_id": "PVP_HK_29"
+    },
+    {
+        "prob_stat": "Real-Time Vehicle Tracking System",
+        "team_name": "NAVGATIH",
+        "team_id": "PVP_HK_30"
+    },
+    {
+        "prob_stat": "E-waste management using smart dustbin and website integration",
+        "team_name": "Trash to Truimph",
+        "team_id": "PVP_HK_31"
+    },
+    {
+        "prob_stat": "AR based application which helps visualize the complete house virtually at an early stage, which can help in cost estimation, planning and completion of the house in time",
+        "team_name": "Six Techs",
+        "team_id": "PVP_HK_32"
+    },
+    {
+        "prob_stat": "APP Based Digital Audiometer",
+        "team_name": "The Wrecking Crew",
+        "team_id": "PVP_HK_33"
+    },
+    {
+        "prob_stat": "Cloudburst prediction system",
+        "team_name": "Storm Front",
+        "team_id": "PVP_HK_34"
+    },
+    {
+        "prob_stat": "Student Innovation",
+        "team_name": "Life Protectors",
+        "team_id": "PVP_HK_35"
+    },
+    {
+        "prob_stat": "cloudbrust prediction system",
+        "team_name": "Solution seekers",
+        "team_id": "PVP_HK_36"
+    },
+    {
+        "prob_stat": "use of digital technology to calculate water foot ptints for different daily use items",
+        "team_name": "CREATORS",
+        "team_id": "PVP_HK_37"
+    },
+    {
+        "prob_stat": "Use of Digital Technology in addressing non-revenue water",
+        "team_name": "Aqua Slayers",
+        "team_id": "PVP_HK_38"
+    },
+    {
+        "prob_stat": "\"Citizens for Sustainability: Mobilizing Recycling in Localities\"",
+        "team_name": "PHOENIX",
+        "team_id": "PVP_HK_39"
+    },
+    {
+        "prob_stat": "Domestic Waste Management",
+        "team_name": "CREP",
+        "team_id": "PVP_HK_40"
+    },
+    {
+        "prob_stat": "Student dropout analysis for school education",
+        "team_name": "Future fusionists",
+        "team_id": "PVP_HK_41"
+    },
+    {
+        "prob_stat": "Developing a software that can translate resource material and other texts from English to other Indian regional languages.",
+        "team_name": "Bharat Basha Translator",
+        "team_id": "PVP_HK_42"
+    },
+    {
+        "prob_stat": "Fake Social Media Profile detection and reporting",
+        "team_name": "ANTI-FAKE FORCE",
+        "team_id": "PVP_HK_43"
+    },
+    {
+        "prob_stat": "Design and Developed a personalized online meeting system for AICTE",
+        "team_name": "Soul Celestia\n",
+        "team_id": "PVP_HK_44"
+    },
+    {
+        "prob_stat": "Automatic regulation of valves for release of water based upon soil moisture availability in the root zone of the crop, using artificial intelligence, in a piped and micro irrigation network of irrigation system.",
+        "team_name": "Farmer Helper",
+        "team_id": "PVP_HK_45"
+    },
+    {
+        "prob_stat": "To design a device to detect earthworms activity  in soil",
+        "team_name": "Soil Saviours",
+        "team_id": "PVP_HK_46"
+    },
+    {
+        "prob_stat": "A software that suggests drugs and formulations for a disease\/pharmacological property based on the Ayurvedic classical books\/Repositories.",
+        "team_name": "Proxima Thinkers",
+        "team_id": "PVP_HK_47"
+    },
+    {
+        "prob_stat": "web or mobile based application for water supply management",
+        "team_name": "The Kingsman",
+        "team_id": "PVP_HK_48"
+    },
+    {
+        "prob_stat": "Redefining Cleanliness and Sustainability by Automating Drainage Waste Collection",
+        "team_name": "Eco Enforecers ",
+        "team_id": "PVP_HK_49"
+    },
+    {
+        "prob_stat": "Student Innovation ",
+        "team_name": "GUIDO",
+        "team_id": "PVP_HK_50"
+    },
+    {
+        "prob_stat": "AI based drone application ",
+        "team_name": "Team infinity ",
+        "team_id": "PVP_HK_51"
+    },
+    {
+        "prob_stat": "Water and Electricity Tracking App",
+        "team_name": "SMARTICO",
+        "team_id": "PVP_HK_52"
+    },
+    {
+        "prob_stat": "Identification of Different Medicinal Plants\/Raw materials through Image Processing Using Machine Learning Algorithms",
+        "team_name": "EcoBotanic Detectives",
+        "team_id": "PVP_HK_53"
+    },
+    {
+        "prob_stat": "E-Waste Facility Locator",
+        "team_name": "Innov8ive Minds ",
+        "team_id": "PVP_HK_54"
+    },
+    {
+        "prob_stat": "  A solution\/idea that can boost current situation of tourism industries including hotels,travel and others",
+        "team_name": "Code Warriors",
+        "team_id": "PVP_HK_55"
+    },
+    {
+        "prob_stat": "Language translator tool to convert English to Hindi which can be used by all the government organisations websites officially ",
+        "team_name": "Hustlers",
+        "team_id": "PVP_HK_56"
+    },
+    {
+        "prob_stat": "         Automated Public Lighting",
+        "team_name": "Automated Public Lighting",
+        "team_id": "PVP_HK_57"
+    },
+    {
+        "prob_stat": "Real Time Vehicle Tracking System ",
+        "team_name": "Coders",
+        "team_id": "PVP_HK_58"
+    },
+    {
+        "prob_stat": "Smart Education ",
+        "team_name": "Euphoria",
+        "team_id": "PVP_HK_59"
+    },
+    {
+        "prob_stat": "Development of motion amplification video techniques for vibration analysis (1415)",
+        "team_name": "The Visualizers",
+        "team_id": "PVP_HK_60"
+    },
+    {
+        "prob_stat": "Development of a Digital Platform for multi-modal visibility of coalÂ transportation",
+        "team_name": "The Squad",
+        "team_id": "PVP_HK_61"
+    },
+    {
+        "prob_stat": "Real-Time Vehicle Tracking system.",
+        "team_name": "Bus Mate",
+        "team_id": "PVP_HK_62"
+    },
+    {
+        "prob_stat": "Pro Planet App (1390)",
+        "team_name": "Planet Gaurdians",
+        "team_id": "PVP_HK_63"
+    },
+    {
+        "prob_stat": "Incentives based Design for onboarding Legal Service Providers such as Advocates, Arbitrators, Mediators, Notaries, Document Writers, etc on eMarket Place for extending Legal Services to Citizens in India",
+        "team_name": "Leagal Reach",
+        "team_id": "PVP_HK_64"
+    },
+    {
+        "prob_stat": "Natural language translation engine for announcements and information dissemination at stations",
+        "team_name": "Innovate Express",
+        "team_id": "PVP_HK_65"
+    },
+    {
+        "prob_stat": "Making career choices and AI based counselling accessible to every child  at secondary level along with aptitude tests and detailed career paths",
+        "team_name": "AI Architects",
+        "team_id": "PVP_HK_66"
+    },
+    {
+        "prob_stat": "One stop solution for monitorig dairy plant energy consumption ,hygiene and packaging waste collection from consumers",
+        "team_name": "ECE Delights",
+        "team_id": "PVP_HK_67"
+    },
+    {
+        "prob_stat": " traditional Agriculture practices lack real time monitoring and efficient operation on fields this leads to inefficiencies and low production levels",
+        "team_name": "The Negotiators",
+        "team_id": "PVP_HK_68"
+    },
+    {
+        "prob_stat": "Student Innovation(SH1469)",
+        "team_name": "ECE Titans",
+        "team_id": "PVP_HK_69"
+    },
+    {
+        "prob_stat": " Robotics for inspection of abrasion\/corrosion of underwater equipment\/parts and furtur repair and maintainance",
+        "team_name": "ECE Innovators ",
+        "team_id": "PVP_HK_70"
+    },
+    {
+        "prob_stat": "Call for low cost desalination technology for lakshadweep and inland saline water sources",
+        "team_name": "ECE Nobles",
+        "team_id": "PVP_HK_71"
+    },
+    {
+        "prob_stat": "Smart toilets",
+        "team_name": "ECE Tech Controllers",
+        "team_id": "PVP_HK_72"
+    },
+    {
+        "prob_stat": " Student dropout analysis for school education",
+        "team_name": "ECE Escapades",
+        "team_id": "PVP_HK_73"
+    },
+    {
+        "prob_stat": "Water and Electricity Tracking app.\n",
+        "team_name": " Eco warriors ",
+        "team_id": "PVP_HK_74"
+    },
+    {
+        "prob_stat": "Self-identifying the mental health status and get guidance for support",
+        "team_name": "Wellness Detectives",
+        "team_id": "PVP_HK_75"
+    },
+    {
+        "prob_stat": "Mental health and well-being surveillance,assessment anr tracking solution among children",
+        "team_name": "ECE Dynamites ",
+        "team_id": "PVP_HK_76"
+    },
+    {
+        "prob_stat": "Domestic waste management",
+        "team_name": "Integrated Comrades",
+        "team_id": "PVP_HK_77"
+    },
+    {
+        "prob_stat": "Developing a system for Patient Care in the Health Sector",
+        "team_name": "Mechrobs-1",
+        "team_id": "PVP_HK_78"
+    },
+    {
+        "prob_stat": "Developing a smart glass cleaning robot which can climb, clean and carry liquid cleaners",
+        "team_name": "Mechrobs-2",
+        "team_id": "PVP_HK_79"
+    },
+    {
+        "prob_stat": "EFFORTLESS LOAD CARRYING: THE SMART BAG SOLUTION",
+        "team_name": "The Techie Converges",
+        "team_id": "PVP_HK_80"
+    },
+    {
+        "prob_stat": "TO DESIGH AND DEVELOP ECOFRIENDLY AIR CHILLER WITH MINIMUM OPERATING COST",
+        "team_name": "Mecheo Innovators",
+        "team_id": "PVP_HK_81"
+    },
+    {
+        "prob_stat": "TO DESIGN AND DEVELOP FOOD ADULTERATION DETECTING DEVICE",
+        "team_name": "Raising Mechartons",
+        "team_id": "PVP_HK_82"
+    },
+    {
+        "prob_stat": "DEHUMIDIFICATION OF WET RICE GRAINS",
+        "team_name": "Resolvers",
+        "team_id": "PVP_HK_83"
+    },
+    {
+        "prob_stat": "Design to enhance patient care",
+        "team_name": "Engineered Medicore",
+        "team_id": "PVP_HK_84"
+    },
+    {
+        "prob_stat": "   PROBLEM STATEMENT ID:  1497  Domain Bucket\tToys & Games (Challenges your creative minds to conceptualize and develop unique toys and games.)",
+        "team_name": "GAME CHANGER",
+        "team_id": "PVP_HK_85"
+    },
+    {
+        "prob_stat": " PROBLEM STATEMENT ID:  1478  Domain Bucket\tAgriculture, FoodTech & Rural Development (Developing solutions, keeping in mind the need to enhance the primary sector of India - Agriculture and to manage and process our agriculture produce)",
+        "team_name": " VILLAGE BOBBATTU ",
+        "team_id": "PVP_HK_86"
+    },
+    {
+        "prob_stat": "  \"Automatic regulation of valves for release of water based upon soil moisture availability in the root zone of the crop, using artificial intelligence, in a piped and micro irrigation network of irrigation system.\"",
+        "team_name": "Greenovation Visionaries",
+        "team_id": "PVP_HK_87"
+    },
+    {
+        "prob_stat": "Addressing the safety and comfort challenges of riding bikes in Indian monsoons by innovating a practical bike umbrella system.",
+        "team_name": "MonsoonGuard Innovators",
+        "team_id": "PVP_HK_88"
+    },
+    {
+        "prob_stat": "Disaster Management",
+        "team_name": "Extrication ",
+        "team_id": "PVP_HK_89"
+    },
+    {
+        "prob_stat": "Al-based Generative design of Hydro power plants.",
+        "team_name": "Hydro power",
+        "team_id": "PVP_HK_90"
+    },
+    {
+        "prob_stat": "Student Innovation ",
+        "team_name": "Sky Sentinels ",
+        "team_id": "PVP_HK_91"
+    },
+    {
+        "prob_stat": "Automated public lighting ",
+        "team_name": "Accel",
+        "team_id": "PVP_HK_92"
+    },
+    {
+        "prob_stat": "Innovative Solution for Reducing ATandC Losses due to Power Pilferage in Electrical Sector",
+        "team_name": "SmartGridGuard",
+        "team_id": "PVP_HK_93"
+    },
+    {
+        "prob_stat": "Student Innovation",
+        "team_name": "LE aders",
+        "team_id": "PVP_HK_94"
+    },
+    {
+        "prob_stat": "Increasing of plastic usage , we are building a machine which collect the used plastic, the collected plastic is transfor to plastic industries to reuse it. By this there is no use of creating a new plastic we can use the plastic which is available in many different ways.",
+        "team_name": "SQUAD",
+        "team_id": "PVP_HK_95"
+    },
+    {
+        "prob_stat": "FOOD TECHNOLOGY ",
+        "team_name": "FOOD SAVIOURS",
+        "team_id": "PVP_HK_96"
+    },
+    {
+        "prob_stat": "Awareness of Chokuwa rice",
+        "team_name": "Grow Green",
+        "team_id": "PVP_HK_97"
+    },
+    {
+        "prob_stat": "\"Citizens for Sustainability: Mobilizing Recycling in Urban Spaces\"",
+        "team_name": "REMAKE",
+        "team_id": "PVP_HK_98"
+    },
+    {
+        "prob_stat": "\"Enhancing Urban Lighting and Communication with Smart Solar-Powered Street Lights\"",
+        "team_name": "SmartConnectors",
+        "team_id": "PVP_HK_99"
+    },
+    {
+        "prob_stat": " Student Innovation",
+        "team_name": "NexaPlorer",
+        "team_id": "PVP_HK_100"
+    },
+    {
+        "prob_stat": "Machine Learning",
+        "team_name": "THE TECH ALLIANCE",
+        "team_id": "PVP_HK_101"
+    }
+]
