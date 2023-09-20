@@ -87,6 +87,16 @@
     p{
         max-width: 100%;
     }
+    
+    #iic{
+        font-size: 0.7rem;
+        margin: 0 !important;
+    }
+    #cord{
+        font-size: 0.7rem;
+        text-align: left;
+        margin: 0 !important;
+    }
     .currCard, .nextCard {
         width: 230px !important;
         height: 100%;
